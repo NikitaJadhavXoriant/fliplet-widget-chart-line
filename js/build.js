@@ -166,6 +166,10 @@
         var eventDetail = event.detail;
 
         if (eventDetail && eventDetail.type === 'colorChange') {
+          if (eventDetail.widgetId && eventDetail.widgetId !== chartId) {
+            return;
+          }
+
           var colorIndex = null;
 
           switch (eventDetail.label) {
