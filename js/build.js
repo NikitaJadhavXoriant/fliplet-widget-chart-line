@@ -380,7 +380,7 @@
       Fliplet.Hooks.on('appearanceChanged', redrawChart);
       Fliplet.Hooks.on('appearanceFileChanged', redrawChart);
 
-      refreshData().then(drawChart).catch(function(error){
+      Fliplet().then(refreshData).then(drawChart).catch(function(error){
         console.error(error);
         setRefreshTimer();
       });
