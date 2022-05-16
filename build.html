@@ -6,12 +6,12 @@
       <div class="row">
         {{#if showTotalEntries}}
         <div class="col-xs-6 {{#unless autoRefresh}}col-xs-offset-3{{/unless}}">
-          <div class="chart-total"><i class="fa fa-tachometer"></i> Total<br><span class="total">&mdash;</span></div>
+          <div class="chart-total"><i class="fa fa-tachometer"></i> <span data-translate="widgets.charts.line.total">Total</span><br><span class="total">&mdash;</span></div>
         </div>
         {{/if}}
         {{#if autoRefresh}}
         <div class="col-xs-6 {{#unless showTotalEntries}}col-xs-offset-3{{/unless}}">
-          <div class="chart-updatedAt"><i class="fa fa-clock-o"></i> Last updated<br><span class="updatedAt">&mdash;</span></div>
+          <div class="chart-updatedAt"><i class="fa fa-clock-o"></i> <span data-translate="widgets.charts.line.lastUpdated">Last updated</span><br><span class="updatedAt">&mdash;</span></div>
         </div>
         {{/if}}
       </div>

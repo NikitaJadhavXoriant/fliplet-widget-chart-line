@@ -1,0 +1,11 @@
+{
+  "widgets": {
+    "charts": {
+      "line": {
+        "total": "Total",
+        "lastUpdated": "Last updated",
+        "label": "{{label}}: "
+      }
+    }
+  }
+}

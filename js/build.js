@@ -13,7 +13,6 @@
       var inheritColor2 = true;
       var refreshTimeout = 5000;
       var refreshTimer;
-      var updateDateFormat = 'hh:mm:ss a';
       var colors = [
         '#00abd1', '#ed9119', '#7D4B79', '#F05865', '#36344C',
         '#474975', '#8D8EA6', '#FF5722', '#009688', '#E91E63'
@@ -106,9 +105,9 @@
 
       function refreshChartInfo() {
         // Update total count
-        $container.find('.total').html(data.totalEntries);
+        $container.find('.total').html(TN(data.totalEntries));
         // Update last updated time
-        $container.find('.updatedAt').html(moment().format(updateDateFormat));
+        $container.find('.updatedAt').html(TD(new Date(), { format: 'LTS' }));
       }
 
       function refreshChart() {
@@ -217,7 +216,7 @@
 
       function drawChart() {
         return new Promise(function (resolve, reject) {
-          var customColors = Fliplet.Themes.Current.getSettingsForWidgetInstance(chartUuid);
+          var customColors = Fliplet.Themes && Fliplet.Themes.Current.getSettingsForWidgetInstance(chartUuid);
 
           colors.forEach(function eachColor(color, index) {
             if (!Fliplet.Themes) {
@@ -283,9 +282,10 @@
               labels: {
                 formatter: function(){
                   if (data.dataFormat === 'timestamp') {
-                    return moment(this.value).format('YYYY-MM-DD');
+                    return TD(this.value, { format: 'l' });
                   }
-                  return this.value;
+
+                  return TN(this.value);
                 }
               },
               startOnTick: true,
@@ -306,21 +306,27 @@
             tooltip: {
               enabled: data.showDataValues,
               headerFormat: '',
-              pointFormat: [
-                '<strong>',
-                (data.xAxisTitle !== ''
+              pointFormatter: function() {
+                var xAxis = data.xAxisTitle !== ''
                   ? data.xAxisTitle
-                  : data.dataSourceQuery.columns.xAxis),
-                '</strong> ',
-                (data.dataFormat === 'timestamp'
-                  ? '{point.x:%Y-%m-%d %H:%M:%S}'
-                  : '{point.x}'),
-                '<br><strong>',
-                (data.yAxisTitle !== ''
+                  : data.dataSourceQuery.columns.xAxis;
+                var yAxis = data.yAxisTitle !== ''
                   ? data.yAxisTitle
-                  : data.dataSourceQuery.columns.yAxis),
-                '</strong>: {point.y}'
-              ].join('')
+                  : data.dataSourceQuery.columns.yAxis;
+
+                return [
+                  '<strong>',
+                  T('widgets.charts.line.label', { label: xAxis }),
+                  '</strong> ',
+                  (data.dataFormat === 'timestamp'
+                    ? TD(this.x, { format: 'l' })
+                    : TN(this.x)),
+                  '<br><strong>',
+                  T('widgets.charts.line.label', { label: yAxis }),
+                  '</strong> ',
+                  TN(this.y)
+                ].join('');
+              }
             },
             series: [{
               data: data.entries,
@@ -368,6 +374,8 @@
       function redrawChart() {
         ui.flipletCharts[chartId].reflow();
       }
+
+      $(this).translate();
 
       if (Fliplet.Env.get('interact')) {
         // TinyMCE removes <style> tags, so we've used a <script> tag instead,
