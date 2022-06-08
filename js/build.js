@@ -52,6 +52,7 @@ Fliplet.Widget.instance('chart-line-1-1-0', function(data) {
           config: data,
           id: data.id,
           uuid: data.uuid,
+          name: data.chartName,
           type: 'line'
         });
       }).then(function() {
@@ -73,6 +74,7 @@ Fliplet.Widget.instance('chart-line-1-1-0', function(data) {
             config: data,
             id: data.id,
             uuid: data.uuid,
+            name: data.chartName,
             type: 'line',
             records: result
           });
@@ -269,6 +271,7 @@ Fliplet.Widget.instance('chart-line-1-1-0', function(data) {
                   chartOptions: chartOpt,
                   id: data.id,
                   uuid: data.uuid,
+                  name: data.chartName,
                   type: 'line',
                   config: data
                 });
@@ -369,6 +372,7 @@ Fliplet.Widget.instance('chart-line-1-1-0', function(data) {
           chartOptions: chartOpt,
           id: data.id,
           uuid: data.uuid,
+          name: data.chartName,
           type: 'line',
           config: data
         }).then(function() {
