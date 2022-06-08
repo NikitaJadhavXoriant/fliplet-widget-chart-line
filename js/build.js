@@ -407,8 +407,6 @@ Fliplet.Widget.instance('chart-line-1-1-0', function(data) {
       setRefreshTimer();
     });
 
-    Fliplet.Chart.add(chartPromise);
-
     chartReady({
       id: data.id,
       uuid: data.uuid,
