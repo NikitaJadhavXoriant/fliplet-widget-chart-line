@@ -5,9 +5,7 @@
   "icon": "img/icon.png",
   "tags": ["type:component", "category:charts"],
   "provider_only": false,
-  "references": [
-    "dataSourceQuery.dataSourceId:dataSource"
-  ],
+  "references": ["dataSourceQuery.dataSourceId:dataSource"],
   "html_tag": "div",
   "interface": {
     "dependencies": [
@@ -19,25 +17,19 @@
       "bootstrap",
       "lodash"
     ],
-    "assets": [
-      "css/interface.css",
-      "js/interface.js"
-    ]
+    "assets": ["css/interface.css", "js/interface.js"]
   },
   "build": {
     "dependencies": [
       "jquery",
       "moment",
       "bootstrap",
-      "highcharts",
+      "fliplet-chart",
       "font-awesome",
       "fliplet-core",
       "fliplet-datasources",
       "lodash"
     ],
-    "assets": [
-      "css/build.css",
-      "js/build.js"
-    ]
+    "assets": ["css/build.css", "js/build.js"]
   }
 }
