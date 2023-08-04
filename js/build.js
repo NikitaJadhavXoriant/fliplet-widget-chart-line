@@ -388,7 +388,9 @@ Fliplet.Widget.instance('chart-line-1-1-0', function(data) {
       ui.flipletCharts[chartId].reflow();
     }
 
-    $container.translate();
+    if ($container) {
+      $container.translate();
+    }
 
     if (Fliplet.Env.get('interact')) {
       // TinyMCE removes <style> tags, so we've used a <script> tag instead,
